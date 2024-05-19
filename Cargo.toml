@@ -3,8 +3,13 @@ name = "grammar"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "log2"
+path = "src/nginx_log2.rs"
+
 
 [dependencies]
 anyhow = "1.0.86"
+chrono = { version = "0.4.38", features = ["serde"] }
 regex = "1.10.4"
+winnow = { version = "0.6.8", features = ["simd"] }
