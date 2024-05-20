@@ -7,6 +7,10 @@ edition = "2021"
 name = "log2"
 path = "src/nginx_log2.rs"
 
+[[bin]]
+name = "json"
+path = "src/json.rs"
+
 
 [dependencies]
 anyhow = "1.0.86"
