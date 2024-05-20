@@ -11,9 +11,15 @@ path = "src/nginx_log2.rs"
 name = "json"
 path = "src/json.rs"
 
+[[bin]]
+name = "json2"
+path = "src/json2.rs"
+
 
 [dependencies]
 anyhow = "1.0.86"
 chrono = { version = "0.4.38", features = ["serde"] }
+pest = { version = "2.7.10", features = ["pretty-print"] }
+pest_derive = "2.7.10"
 regex = "1.10.4"
 winnow = { version = "0.6.8", features = ["simd"] }
