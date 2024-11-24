@@ -81,7 +81,7 @@ fn parse_num(input: &mut &str) -> PResult<Num> {
     let num = digit1.parse_to::<i64>().parse_next(input)?;
     let ret: Result<(), ErrMode<ContextError>> = ".".value(()).parse_next(input);
     if ret.is_ok() {
-        let frac = digit1.parse_to::<i64>().parse_next(input)?;
+        let frac = digit1.parse_to::<String>().parse_next(input)?;
         let v = format!("{}.{}", num, frac).parse::<f64>().unwrap();
         Ok(if sign {
             Num::Float(-v as _)
@@ -114,7 +114,7 @@ fn parse_object(input: &mut &str) -> PResult<HashMap<String, JsonValue>> {
     let sep_colon = sep_with_space(':');
 
     let parse_kv_pair = separated_pair(parse_string, sep_colon, parse_value);
-    let parse_kv = separated(1.., parse_kv_pair, sep_comma);
+    let parse_kv = separated(0.., parse_kv_pair, sep_comma);
     delimited(sep1, parse_kv, sep2).parse_next(input)
 }
 
