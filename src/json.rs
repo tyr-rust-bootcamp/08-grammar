@@ -173,6 +173,11 @@ mod tests {
         let result = parse_num(&mut (&*input))?;
         assert_eq!(result, Num::Float(-123.456));
 
+        // FIXME: doesn't work it the digital starts with 0
+        let input = "123.0001";
+        let result = parse_num(&mut (&*input))?;
+        assert_eq!(result, Num::Float(123.0001));
+
         Ok(())
     }
 
@@ -233,6 +238,12 @@ mod tests {
                 JsonValue::Number(Num::Int(3)),
             ]),
         );
+        assert_eq!(result, expected);
+
+        // FIXME: doesn't work with empty object
+        let input = r#"{}"#;
+        let result = parse_object(&mut (&*input))?;
+        let expected = HashMap::new();
         assert_eq!(result, expected);
 
         Ok(())
