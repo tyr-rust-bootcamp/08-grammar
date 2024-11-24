@@ -82,7 +82,9 @@ fn parse_num(input: &mut &str) -> PResult<Num> {
     let ret: Result<(), ErrMode<ContextError>> = ".".value(()).parse_next(input);
     if ret.is_ok() {
         let frac = digit1.parse_to::<String>().parse_next(input)?;
-        let v = format!("{}.{}", num, frac).parse::<f64>().unwrap();
+        let v = format!("{}.{}", num, frac)
+            .parse::<f64>()
+            .expect("string should be a valid float");
         Ok(if sign {
             Num::Float(-v as _)
         } else {
